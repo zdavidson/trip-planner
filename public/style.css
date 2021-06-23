@@ -17,6 +17,13 @@ h2 {
   color: hsl(202, 44%, 55%);
 }
 
+.new-hotel,
+.new-restaurant,
+.new-activity,
+.btn-danger {
+  display: inline-block;
+}
+
 #map {
   height: 90vh;
 }
@@ -26,9 +33,3 @@ h2 {
     height: 10vh;
   }
 } */
-.new-hotel,
-.new-restaurant,
-.new-activity,
-.btn-danger {
-  display: inline-block;
-}

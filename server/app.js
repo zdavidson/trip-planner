@@ -16,46 +16,6 @@ app.use(express.static(path.join(__dirname, "..", "node_modules")));
 app.use(express.static(path.join(__dirname, "..", "/public")));
 
 app.use("/api", router);
-// app.get("/api/all", async (req, res, next) => {
-//   try {
-//     const allAttractions = {};
-
-//     allAttractions.hotels = await Hotel.findAll({ include: Place });
-//     allAttractions.restaurants = await Restaurant.findAll({ include: Place });
-//     allAttractions.activities = await Activity.findAll({ include: Place });
-
-//     res.json(allAttractions);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
-// app.post("/api/hotel", (req, res, next) => {
-//   try {
-//     const hotelName = req.body.hotelName;
-//     res.json(hotelName);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
-// app.post("/api/restaurants", (req, res, next) => {
-//   try {
-//     const restaurantName = req.body.restaurantName;
-//     res.json(restaurantName);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
-// app.post("/api/activities", (req, res, next) => {
-//   try {
-//     const activityName = req.body.activityName;
-//     res.json(activityName);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 app.use((req, res, next) => {
   const err = new Error("Not Found");

@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const { db, Activity, Restaurant, Hotel, Place } = require("./models");
 
 router.get("/all", async (req, res, next) => {
