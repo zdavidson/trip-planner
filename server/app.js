@@ -28,6 +28,15 @@ app.get("/api/all", async (req, res, next) => {
   }
 });
 
+app.post("/api/hotel", (req, res, next) => {
+  try {
+    const hotelName = req.body.hotelName;
+    res.json(hotelName);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.use((req, res, next) => {
   const err = new Error("Not Found");
   console.error(err);
