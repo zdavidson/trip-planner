@@ -58,7 +58,9 @@ window.addEventListener("DOMContentLoaded", () => {
       $.ajax({ url: "/api/hotel", method: "POST", data: { hotelName } })
         .then((selectedHotel) => {
           const $div = $("#my-hotel");
-          $div.append(`<p>${selectedHotel}</p>`);
+          $div.append(
+            `<p>${selectedHotel}</p><button id="remove-hotel-${select}" class="btn btn-danger">x</button>`
+          );
         })
         .catch((error) => {
           console.error(error);
