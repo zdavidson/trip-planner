@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #c1b5ad;
+}
+
+header {
+  background-color: hsl(21, 13%, 35%);
+}
+
+h1,
+h2 {
+  color: hsl(202, 44%, 55%);
+  font-family: cursive;
+}
+
+#map {
+  height: 90vh;
+}
+
+/* @media only screen and (min-width: 300px) {
+  #map {
+    height: 10vh;
+  }
+} */
