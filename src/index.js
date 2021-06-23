@@ -17,10 +17,9 @@ const newMarker = (latitude, longitude, userColor) =>
 
 const marker = newMarker(-74.006, 40.7128);
 
-// Main
+// Get All Options
 $(document).ready(() => {
   const getAllAttractions = () => {
-    // Get All Options
     $.ajax({ url: "/api/all", method: "GET" })
       .then((attractions) => {
         const hotelOptions = attractions.hotels.map(
@@ -43,7 +42,9 @@ $(document).ready(() => {
       .catch((error) => {
         console.error(error);
       });
+  };
 
+  const accessSelects = () => {
     // Hotel Select
     $("#hotel-button").click(() => {
       // Name & Id
@@ -171,7 +172,9 @@ $(document).ready(() => {
       });
     });
   };
+
   getAllAttractions();
+  accessSelects();
 });
 
 // TODO:
