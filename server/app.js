@@ -37,6 +37,24 @@ app.post("/api/hotel", (req, res, next) => {
   }
 });
 
+app.post("/api/restaurants", (req, res, next) => {
+  try {
+    const restaurantName = req.body.restaurantName;
+    res.json(restaurantName);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post("/api/activities", (req, res, next) => {
+  try {
+    const activityName = req.body.activityName;
+    res.json(activityName);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.use((req, res, next) => {
   const err = new Error("Not Found");
   console.error(err);
