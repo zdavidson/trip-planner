@@ -1,17 +1,17 @@
-import mapboxgl from "mapbox-gl";
+// import mapboxgl from "mapbox-gl";
+// import mapboxToken from "./mapboxToken";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiemRhdmlkc29uIiwiYSI6ImNrcTQ4YzVuNzA3d28ybnFuNWtzNnl1cXAifQ.wpS_SVtPi7HbCFEbTT5VbA";
+// const map = new mapboxgl.Map({
+//   container: "map",
+//   style: "mapbox://styles/mapbox/streets-v10",
+//   center: [-74.006, 40.7128],
+//   zoom: 12,
+// });
 
-const map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/mapbox/streets-v10",
-  center: [-74.006, 40.7128],
-  zoom: 12,
-});
+// const buildMarker = (latitude, longitude) => {
+//   new mapboxgl.Marker().setLngLat([latitude, longitude]).addTo(map);
+// };
 
-const buildMarker = (latitude, longitude) => {
-  new mapboxgl.Marker().setLngLat([latitude, longitude]).addTo(map);
-};
+// const marker = buildMarker(-74.006, 40.7128);
 
-const marker = buildMarker(-74.006, 40.7128);
+// const hotelMarker = buildMarker(newLatitude, newLongitude);
