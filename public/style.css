@@ -15,7 +15,6 @@ header {
 h1,
 h2 {
   color: hsl(202, 44%, 55%);
-  font-family: cursive;
 }
 
 #map {
@@ -27,3 +26,9 @@ h2 {
     height: 10vh;
   }
 } */
+.new-hotel,
+.new-restaurant,
+.new-activity,
+.btn-danger {
+  display: inline-block;
+}

@@ -14,11 +14,14 @@ const buildMarker = (latitude, longitude) => {
 
 const marker = buildMarker(-74.006, 40.7128);
 
+const newMarker = (latitude, longitude, userColor) =>
+  new mapboxgl.Marker({ color: userColor })
+    .setLngLat([latitude, longitude])
+    .addTo(map);
+
 // Populate selects & button event handler
 window.addEventListener("DOMContentLoaded", () => {
   const getAllAttractions = () => {
-    console.log("We are getting those attractions");
-
     $.ajax({ url: "/api/all", method: "GET" })
       .then((attractions) => {
         const $hotels = $("#hotel-select");
@@ -60,7 +63,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const newLatitude = hotelCoordinates[1];
       const newLongitude = hotelCoordinates[0];
 
-      buildMarker(newLatitude, newLongitude);
+      const hotelMarker = newMarker(newLatitude, newLongitude, "#008000");
 
       console.log(newLongitude, newLatitude);
       console.log(hotelName);
@@ -69,12 +72,29 @@ window.addEventListener("DOMContentLoaded", () => {
         .then((selectedHotel) => {
           const $div = $("#my-hotel");
           $div.append(
-            `<p>${selectedHotel}</p><button id="remove-hotel-${select}" class="btn btn-danger">x</button>`
+            `<div><p class="new-hotel">${selectedHotel}</p> <button id="remove-hotel-${select}" class="btn btn-danger">x</button></div>`
           );
         })
         .catch((error) => {
           console.error(error);
         });
+
+      const $myHotelDiv = $("#my-hotel");
+      const arrayOfChildren = $myHotelDiv[0].childNodes;
+
+      // arrayOfChildren.forEach((child) => {
+      //   console.log("One Child: ", child);
+      // });
+      // console.log("Array of Children: ", arrayOfChildren);
+
+      $myHotelDiv.on("click", "button", () => {
+        console.log("My Hotel div inside: ", $myHotelDiv);
+        const $hotel = $("#my-hotel p");
+        const $button = $("#my-hotel button");
+        $hotel.remove();
+        $button.remove();
+        hotelMarker.remove();
+      });
     });
 
     const $restaurantButton = $("#restaurant-button");
@@ -89,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const newLatitude = restaurantCoordinates[1];
       const newLongitude = restaurantCoordinates[0];
 
-      buildMarker(newLatitude, newLongitude);
+      const restaurantMarker = newMarker(newLatitude, newLongitude, "#6a0dad");
 
       console.log(restaurantName);
 
@@ -101,12 +121,21 @@ window.addEventListener("DOMContentLoaded", () => {
         .then((selectedRestaurant) => {
           const $div = $("#my-restaurants");
           $div.append(
-            `<p>${selectedRestaurant}</p><button id="remove-restaurant-${select}" class="btn btn-danger">x</button>`
+            `<div><p class="new-restaurant">${selectedRestaurant}</p> <button id="remove-restaurant-${select}" class="btn btn-danger">x</button></div>`
           );
         })
         .catch((error) => {
           console.error(error);
         });
+
+      const $myRestaurantDiv = $("#my-restaurants");
+      $myRestaurantDiv.on("click", "button", () => {
+        const $restaurant = $("#my-restaurants div p");
+        const $button = $("#my-restaurants button");
+        $restaurant.remove();
+        $button.remove();
+        restaurantMarker.remove();
+      });
     });
 
     const $activityButton = $("#activity-button");
@@ -121,7 +150,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const newLatitude = activityCoordinates[1];
       const newLongitude = activityCoordinates[0];
 
-      buildMarker(newLatitude, newLongitude);
+      const activityMarker = newMarker(newLatitude, newLongitude, "#FFA500");
 
       console.log(activityName);
 
@@ -133,14 +162,29 @@ window.addEventListener("DOMContentLoaded", () => {
         .then((selectedActivity) => {
           const $div = $("#my-activities");
           $div.append(
-            `<p>${selectedActivity}</p><button id="remove-activity-${select}" class="btn btn-danger">x</button>`
+            `<div><p class="new-activity">${selectedActivity}</p> <button id="remove-activity-${select}" class="btn btn-danger">x</button></div>`
           );
         })
         .catch((error) => {
           console.error(error);
         });
+
+      const $myActivityDiv = $("#my-activities");
+      $myActivityDiv.on("click", "button", () => {
+        const $activity = $("#my-activities div p");
+        const $button = $("#my-activities button");
+        $activity.remove();
+        $button.remove();
+        activityMarker.remove();
+      });
     });
   };
-
   getAllAttractions();
 });
+
+// TODO:
+// Make markers reflect type of attraction
+// When new marker is added, screen zooms in to it
+// Save Itinerary should save setup to a new route //localhost:8080/:savedItineraryId
+// -- This needs to save to the database(?) to be accessed again by the user
+// Clean up styling when complete
